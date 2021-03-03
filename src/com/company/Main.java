@@ -7,9 +7,6 @@ import com.company.data.interfaces.IDB;
 public class Main {
 
     public static void main(String[] args) {
-        //Ayan's comment
-
-
 
 //        String connectionUrl = "jdbc:postgresql://localhost:5432/simpledb";
 //        Connection con = null;
