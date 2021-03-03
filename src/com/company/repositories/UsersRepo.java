@@ -25,8 +25,8 @@ public class UsersRepo implements IUsersRepo {
 
             st.setInt(1, users.getLogin());
             st.setString(2, users.getFname());
-            st.setString(3, users.getLname();
-            st.setString(4, users.getBirth_date();
+            st.setString(3, users.getLname());
+            st.setString(4, users.getBirth_date());
 
             boolean executed = st.execute();
             return executed;
