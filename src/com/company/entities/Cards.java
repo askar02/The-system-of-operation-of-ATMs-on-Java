@@ -1,8 +1,5 @@
 package com.company.entities;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Cards {
     private int card_number;
     private String password;
