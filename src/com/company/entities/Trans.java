@@ -1,37 +1,63 @@
 package com.company.entities;
 
 public class Trans {
-    private int cards_card_number;
-    private String operation;
-    public Trans(){
+    private int card_number, sum, id;
+    private String date, type;
+    private boolean permission;
 
+    public Trans(String date, String type, int sum){
+        setDate(date);
+        setType(type);
+        setSum(sum);
     }
 
-    public Trans(String operation){
-        setOperation(operation);
-        setCards_card_number(cards_card_number);
+
+    public int getSum() {
+        return sum;
     }
 
-    public Trans(int cards_card_number, String operation){
-        setCards_card_number(cards_card_number);
-        setOperation(operation);
+    public void setSum(int sum) {
+        this.sum = sum;
     }
 
-    public int getCards_card_number() {
-        return cards_card_number;
+    public int getId() {
+        return id;
     }
 
-    public void setCards_card_number(int cards_card_number) {
-        this.cards_card_number = cards_card_number;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getOperation() {
-        return operation;
+    public String getDate() {
+        return date;
     }
 
-    public void setOperation(String operation) {
-        this.operation = operation;
+    public void setDate(String date) {
+        this.date = date;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public boolean isPermission() {
+        return permission;
+    }
+
+    public void setPermission(boolean permission) {
+        this.permission = permission;
+    }
+
+    public int getCard_number() {
+        return card_number;
+    }
+
+    public void setCard_number(int card_number) {
+        this.card_number = card_number;
+    }
 }
 

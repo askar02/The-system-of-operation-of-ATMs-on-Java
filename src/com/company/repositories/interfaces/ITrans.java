@@ -1,6 +1,12 @@
 package com.company.repositories.interfaces;
 
+import com.company.entities.Trans;
+
+import java.util.List;
+
 public interface ITrans {
-    boolean executeTrans(int id, int cvv);
-    String operation();
+    boolean transPermissionCVV(int id, int cvv);
+    List<Trans> getAllTransInfo();
+    boolean transPermissionBalance(int id, int balance);
+    boolean createTransaction(Trans trans);
 }
