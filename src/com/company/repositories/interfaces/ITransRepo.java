@@ -4,8 +4,8 @@ import com.company.entities.Trans;
 
 import java.util.List;
 
-public interface ITrans {
-    boolean transPermissionCVV(int id, int cvv);
+public interface ITransRepo {
+    boolean transPermissionCVV(int id, String cvv);
     List<Trans> getAllTransInfo();
     boolean transPermissionBalance(int id, int balance);
     boolean createTransaction(Trans trans);

@@ -2,20 +2,20 @@ package com.company.repositories;
 
 import com.company.data.interfaces.IDB;
 import com.company.entities.Trans;
-import com.company.repositories.interfaces.ITrans;
+import com.company.repositories.interfaces.ITransRepo;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransRepository implements ITrans {
+public class TransRepo implements ITransRepo {
     private final IDB db;
-    public TransRepository(IDB db) {
+    public TransRepo(IDB db) {
         this.db = db;
     }
 
     @Override
-    public boolean transPermissionCVV(int id, int cvv) {
+    public boolean transPermissionCVV(int id, String cvv) {
         try {
             Connection con = db.getConnection();
             String sql = "select cvv from card where id = ?";
@@ -23,8 +23,8 @@ public class TransRepository implements ITrans {
             ResultSet rs = st.executeQuery();
             st.setInt(1, id);
             if (rs.next()) {
-                int cvv1 = rs.getInt("cvv");
-                if (cvv1 == cvv) {
+                String cvv1 = rs.getString("cvv");
+                if (cvv1.equals(cvv)) {
                     return true;
                 }
             }
