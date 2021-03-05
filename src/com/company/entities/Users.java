@@ -25,6 +25,13 @@ public class Users {
         setPassword(password);
     }
 
+    public Users(int login, String fname, String lname, String birth_date) {
+        setFname(fname);
+        setLname(lname);
+        setBirth_date(birth_date);
+        setLogin(login);
+    }
+
     public int getLogin() {
         return login;
     }

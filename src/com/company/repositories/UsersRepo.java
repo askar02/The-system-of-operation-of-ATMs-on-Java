@@ -37,33 +37,24 @@ public class UsersRepo implements IUsersRepo {
     }
 
     @Override
-    public boolean login(int login, String password) {
-        Connection con = null;
+    public boolean logIn(int login, String password) {
         try {
-            con = db.getConnection();
-            String sql = "SELECT login FROM users";
+            Connection con = db.getConnection();
+            String sql = "SELECT login, password FROM users";
             Statement st = con.createStatement();
-
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 int login1 = rs.getInt("login");
                 String password1 = rs.getString("password");
                 if (login1 == login){
                     if (password1.equals(password)){
+                        con.close();
                         return true;
                     }
                 }
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
         }
         return false;
     }
