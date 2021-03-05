@@ -17,9 +17,8 @@ public class UsersRepo implements IUsersRepo {
 
     @Override
     public boolean registration(Users users) {
-        Connection con = null;
         try {
-            con = db.getConnection();
+            Connection con = db.getConnection();
             String sql = "INSERT INTO users(login,fname,lname,birth_date) VALUES (?,?,?,?)"; //inserting data to developers table
             PreparedStatement st = con.prepareStatement(sql);
 
@@ -29,18 +28,11 @@ public class UsersRepo implements IUsersRepo {
             st.setString(4, users.getBirth_date());
 
             boolean executed = st.execute();
+            con.close();
             return executed;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
             }
-        }
         return true;
     }
 

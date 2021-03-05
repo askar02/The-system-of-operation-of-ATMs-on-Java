@@ -17,9 +17,8 @@ public class CardRepository implements ICardRepo {
 
     @Override
     public boolean createNewCard(Cards cards) {
-        Connection con = null;
         try {
-            con = db.getConnection();
+            Connection con = db.getConnection();
             String sql = "INSERT INTO cards(card_number,password,balance,cvv,login) VALUES (?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
 
@@ -38,9 +37,8 @@ public class CardRepository implements ICardRepo {
     }
     @Override
     public List<Cards> viewAllCards() {
-        Connection con = null;
         try {
-            con = db.getConnection();
+            Connection con = db.getConnection();
             String sql = "SELECT card_number,password,balance,cvv,login FROM cards";
             Statement st = con.createStatement();
 
@@ -54,19 +52,11 @@ public class CardRepository implements ICardRepo {
                         rs.getInt("login"));
 
                 cards.add(card);
-            }
-
-            return cards;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
                 con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
             }
+            return cards;
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
         }
         return null;
     }

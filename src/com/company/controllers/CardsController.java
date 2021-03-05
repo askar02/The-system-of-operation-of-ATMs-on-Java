@@ -1,7 +1,6 @@
 package com.company.controllers;
 
 import com.company.entities.Cards;
-import com.company.repositories.CardRepository;
 import com.company.repositories.interfaces.ICardRepo;
 
 import java.util.List;
