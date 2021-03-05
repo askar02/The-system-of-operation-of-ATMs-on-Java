@@ -1,33 +1,33 @@
 package com.company.repositories;
 
 import com.company.data.interfaces.IDB;
-import com.company.entities.Cards;
-import com.company.repositories.interfaces.ICardRepo;
+import com.company.entities.Users;
+import com.company.repositories.interfaces.IUsersRepo;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardRepository implements ICardRepo {
+public class UsersRepo implements IUsersRepo {
     private final IDB db;
 
-    public CardRepository(IDB db) {
+    public UsersRepo(IDB db) {
         this.db = db;
     }
 
     @Override
-    public boolean createNewCard(Cards cards) {
+    public boolean registration(Users users) {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "INSERT INTO cards(card_number,password,balance,cvv,login) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO users(login,fname,lname,birth_date) VALUES (?,?,?,?)"; //inserting data to developers table
             PreparedStatement st = con.prepareStatement(sql);
 
-            st.setInt(1, cards.getCard_number());
-            st.setString(2, cards.getPassword());
-            st.setString(3, cards.getBalance());
-            st.setInt(4, cards.getCvv());
-            st.setInt(5, cards.getUsers_login());
+            st.setInt(1, users.getLogin());
+            st.setString(2, users.getFname());
+            st.setString(3, users.getLname());
+            st.setString(4, users.getBirth_date());
+
             boolean executed = st.execute();
             return executed;
         } catch (SQLException throwables) {
@@ -41,29 +41,27 @@ public class CardRepository implements ICardRepo {
                 throwables.printStackTrace();
             }
         }
-        return false;
+        return true;
     }
+
     @Override
-    public List<Cards> viewAllCards() {
+    public boolean login(int login, String password) {
         Connection con = null;
         try {
             con = db.getConnection();
-            String sql = "SELECT card_number,password,balance,cvv,login FROM cards";
+            String sql = "SELECT login FROM users";
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
-            List<Cards> cards = new ArrayList<>();
-            while (rs.next()) {
-                Cards card = new Cards(rs.getString("card_number"),
-                        rs.getString("password"),
-                        rs.getInt("balance"),
-                        rs.getInt("cvv"),
-                        rs.getInt("login"));
-
-                cards.add(card);
+            if (rs.next()) {
+                int login1 = rs.getInt("login");
+                String password1 = rs.getString("password");
+                if (login1 == login){
+                    if (password1.equals(password)){
+                        return true;
+                    }
+                }
             }
-
-            return cards;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -75,6 +73,7 @@ public class CardRepository implements ICardRepo {
                 throwables.printStackTrace();
             }
         }
-        return null;
+        return false;
     }
+
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface IUsersRepo {
     boolean registration(Users users);
-    Users getUsersById(int id);
-    List<Users> getAllUsers();
+    boolean login(int login, String password);
 }
 

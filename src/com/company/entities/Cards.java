@@ -6,7 +6,7 @@ public class Cards {
     private String balance;
     private int cvv;
     private int users_login;
-    public Cards(){
+    public Cards(String card_number, String password, int balance, int cvv, int login){
 
     }
 

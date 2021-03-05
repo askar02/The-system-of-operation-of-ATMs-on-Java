@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 
 public class Validator {
     Scanner input = new Scanner(System.in);
+    private int month;
+    private int year;
 
     public static void checkPassword(String password) { // function which cheks the password if it is not matching with conditions outputs come message
         Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]3)[A-Za-z\\d@$!%*?&]{8,}$");
@@ -38,7 +40,7 @@ public class Validator {
 
     public static void CardNumberChecker(String[] CardNumber) {
         System.out.println("Input your card number");
-        List <String> card_number = new ArrayList<String>();
+        List<String> card_number = new ArrayList<String>();
         String regex = "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|\n" +
                 "\t\t(?<mastercard>5[1-5][0-9]{14})|\n" +
                 "\t\t(?<discover>6(?:011|5[0-9]{2})[0-9]{12})|\n" +
@@ -46,13 +48,27 @@ public class Validator {
                 "\t\t(?<diners>3(?:0[0-5]|[68][0-9])?[0-9]{11})|\n" +
                 "\t\t(?<jcb>(?:2131|1800|35[0-9]{3})[0-9]{11}))$";
         Pattern pattern = Pattern.compile(regex);
-        for (String card : card_number){
-            card = card.replaceAll("-","");
+        for (String card : card_number) {
+            card = card.replaceAll("-", "");
             Matcher matcher = pattern.matcher(card);
             System.out.println(matcher.matches());
-            if(matcher.matches()){
+            if (matcher.matches()) {
                 System.out.println(matcher.group());
             }
+        }
+    }
+
+    public boolean checkDate(String date) {
+        String[] splitDate = date.split("/");
+        int m = Integer.parseInt(splitDate[0]);
+        int y = Integer.parseInt(splitDate[1]);
+        if ((m > 0 && m < 13) && (y > 20 && y < 30)) {
+            System.out.println("Your inspiration date is valid");
+            return true;
+        }
+        else {
+            System.out.println("Enter valid date of inspiration");
+            return false;
         }
     }
 }
