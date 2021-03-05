@@ -29,17 +29,10 @@ public class CardRepository implements ICardRepo {
             st.setInt(4, cards.getCvv());
             st.setInt(5, cards.getUsers_login());
             boolean executed = st.execute();
+            con.close();
             return executed;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
         }
         return false;
     }
