@@ -2,8 +2,12 @@ package com.company.entities;
 
 public class Debts {
     private int card_number;
-    private int loan_plan;
-    private boolean loans;
+    private int loan_plan, loan_sum;
+
+    public Debts(int loan_sum, int loan_plan) {
+        setLoan_plan(loan_plan);
+        setLoan_sum(loan_sum);
+    }
 
     public int getCard_number() {
         return card_number;
@@ -21,11 +25,11 @@ public class Debts {
         this.loan_plan = loan_plan;
     }
 
-    public boolean isLoans() {
-        return loans;
+    public int getLoan_sum() {
+        return loan_sum;
     }
 
-    public void setLoans(boolean loans) {
-        this.loans = loans;
+    public void setLoan_sum(int loan_sum) {
+        this.loan_sum = loan_sum;
     }
 }

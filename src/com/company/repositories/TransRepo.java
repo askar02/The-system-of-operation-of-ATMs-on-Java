@@ -15,27 +15,6 @@ public class TransRepo implements ITransRepo {
     }
 
     @Override
-    public boolean transPermissionCVV(int id, String cvv) {
-        try {
-            Connection con = db.getConnection();
-            String sql = "select cvv from card where id = ?";
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            st.setInt(1, id);
-            if (rs.next()) {
-                String cvv1 = rs.getString("cvv");
-                if (cvv1.equals(cvv)) {
-                    return true;
-                }
-            }
-        }
-        catch (SQLException | ClassNotFoundException throwable) {
-            throwable.printStackTrace();
-        }
-        return false;
-    }
-
-    @Override
     public boolean transPermissionBalance(int id, int balance) {
         try {
             Connection con = db.getConnection();

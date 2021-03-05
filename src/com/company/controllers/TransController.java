@@ -17,8 +17,7 @@ public class TransController {
     public String createTransaction(int sum, String date, String type, int card_id, String cvv, int balance, int trans_id) {
         Trans trans = new Trans(date, type, sum);
         boolean created = repo.createTransaction(trans);
-        boolean cvvPermission = repo.transPermissionCVV(card_id, cvv);
         boolean balancePermission = repo.transPermissionBalance(trans_id, balance);
-        return ((created || balancePermission || cvvPermission) ? "Transaction is successfully finished!" : "Transaction is failed!");
+        return ((created || balancePermission) ? "Transaction is successfully finished!" : "Transaction is failed!");
     }
 }
