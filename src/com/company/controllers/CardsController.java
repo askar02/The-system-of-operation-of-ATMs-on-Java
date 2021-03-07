@@ -21,5 +21,16 @@ public class CardsController {
         boolean created = repo.createNewCard(cards);
         return (created ? "Your card is created" : "Creation is failed try again");
     }
+    public boolean getCard(int card_number) {
+        Cards cards = repo.getCard(card_number);
+        if (cards == null) {
+            System.out.println("No card with given id is found.");
+            return false;
+        }
+        else {
+            System.out.println(cards.toString());
+            return true;
+        }
+    }
 }
 

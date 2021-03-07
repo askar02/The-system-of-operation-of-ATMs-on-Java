@@ -25,6 +25,13 @@ public class Cards {
         setUsers_login(users_login);
     }
 
+    public Cards(int card_number, String password, String balance, int cvv) {
+        setCard_number(card_number);
+        setPassword(password);
+        setBalance(balance);
+        setCvv(cvv);
+    }
+
     public int getCard_number() {
         return card_number;
     }

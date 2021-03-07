@@ -8,6 +8,5 @@ import java.util.List;
 public interface ICardRepo {
     List<Cards> viewAllCards();
     boolean createNewCard(Cards cards);
-
-
+    Cards getCard(int cardNumber);
 }

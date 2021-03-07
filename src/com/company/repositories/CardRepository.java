@@ -60,4 +60,28 @@ public class CardRepository implements ICardRepo {
         }
         return null;
     }
+
+    @Override
+    public Cards getCard(int cardNumber) {
+        try {
+            Connection con = db.getConnection();
+            String sql = "select (card_number, password, balance, cvv) from cards where card_number = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, cardNumber);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Cards cards = new Cards(rs.getInt("card_number"),
+                        rs.getString("password"),
+                        rs.getString("balance"),
+                        rs.getInt("cvv"));
+                con.close();
+                return cards;
+            }
+        }
+        catch (SQLException | ClassNotFoundException throwable) {
+            throwable.printStackTrace();
+        }
+
+        return null;
+    }
 }
