@@ -5,6 +5,6 @@ import com.company.entities.Debts;
 import java.util.List;
 
 public interface IDebtsRepo {
-    boolean takeLoan(int loan_plan, int loan_sum);
-    List<Debts> getAllLoans();
+    boolean takeLoan(int loan_plan, int loan_sum, int card_number);
+    List<Debts> getAllLoans(int card_number);
 }

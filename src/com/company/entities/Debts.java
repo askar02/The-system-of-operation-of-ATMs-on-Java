@@ -32,4 +32,12 @@ public class Debts {
     public void setLoan_sum(int loan_sum) {
         this.loan_sum = loan_sum;
     }
+
+    @Override
+    public String toString() {
+        return "Debts{" +
+                ", loan_plan=" + loan_plan +
+                ", loan_sum=" + loan_sum +
+                '}';
+    }
 }

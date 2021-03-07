@@ -4,20 +4,17 @@ public class Cards {
     private int card_number;
     private String password;
     private String balance;
-    private int cvv;
+    private String cvv;
     private int users_login;
-    public Cards(String card_number, String password, int balance, int cvv, int login){
 
-    }
-
-    public Cards(String password, String balance, int cvv, int users_login){
-        setPassword(password);
+    public Cards(int card_number, String balance, String cvv, int users_login){
         setBalance(balance);
         setCvv(cvv);
         setUsers_login(users_login);
+        setCard_number(card_number);
     }
 
-    public Cards(int card_number, String password, String balance, int cvv, int users_login){
+    public Cards(int card_number, String password, String balance, String cvv, int users_login){
         setCard_number(card_number);
         setPassword(password);
         setBalance(balance);
@@ -25,7 +22,7 @@ public class Cards {
         setUsers_login(users_login);
     }
 
-    public Cards(int card_number, String password, String balance, int cvv) {
+    public Cards(String password, String balance) {
         setCard_number(card_number);
         setPassword(password);
         setBalance(balance);
@@ -56,20 +53,25 @@ public class Cards {
         this.balance = balance;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
-    }
-
-    public int getUsers_login() {
-        return users_login;
     }
 
     public void setUsers_login(int users_login) {
         this.users_login = users_login;
     }
 
+    @Override
+    public String toString() {
+        return "Cards{" +
+                "card_number=" + card_number +
+                ", balance='" + balance + '\'' +
+                ", cvv='" + cvv + '\'' +
+                ", users_login=" + users_login +
+                '}';
+    }
 }

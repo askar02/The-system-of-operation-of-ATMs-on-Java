@@ -14,7 +14,7 @@ public class UserController {
         return (executed ? "Registration is successful." : "Registration is failed. Please try again");
     }
 
-    public boolean logIn(int login, String password) {
-        return repo.logIn(login, password);
+    public boolean logIn(int login) {
+        return repo.logIn(login);
     }
 }

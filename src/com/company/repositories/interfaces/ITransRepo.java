@@ -5,7 +5,6 @@ import com.company.entities.Trans;
 import java.util.List;
 
 public interface ITransRepo {
-    List<Trans> getAllTransInfo();
-    boolean transPermissionBalance(int id, int balance);
-    boolean createTransaction(Trans trans);
+    List<Trans> getAllTransInfo(int card_number);
+    boolean createTransaction(Trans trans, int card_number);
 }

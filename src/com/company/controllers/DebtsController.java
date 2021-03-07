@@ -10,14 +10,14 @@ public class DebtsController {
     public DebtsController(IDebtsRepo repo) {
         this.repo = repo;
     }
-    public String takeLoan(int loan_sum, int loan_plan) {
-        boolean executed = repo.takeLoan(loan_plan, loan_sum);
+    public String takeLoan(int loan_sum, int loan_plan, int card_number) {
+        boolean executed = repo.takeLoan(loan_plan, loan_sum, card_number);
         return (executed ? "Loan is successfully taken. You took " + loan_sum + " for " + loan_plan + " years and will pay " + loan_sum/loan_plan + " per month."
                 : "Loan registration was denied");
     }
 
-    public String getAllLoans() {
-        List<Debts> allLoans = repo.getAllLoans();
+    public String getAllLoans(int card_number) {
+        List<Debts> allLoans = repo.getAllLoans(card_number);
         return (allLoans != null ? allLoans.toString() : "Your query is failed. Please try again later.");
     }
 }

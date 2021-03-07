@@ -1,12 +1,10 @@
 package com.company.repositories.interfaces;
 
 import com.company.entities.Cards;
-
-import javax.smartcardio.Card;
 import java.util.List;
 
 public interface ICardRepo {
-    List<Cards> viewAllCards();
-    boolean createNewCard(Cards cards);
-    Cards getCard(int cardNumber);
+    List<Cards> viewAllCards(int login);
+    boolean createNewCard(Cards cards, int login);
+    Cards getCard(int cardNumber, int login);
 }

@@ -1,9 +1,8 @@
 package com.company.entities;
 
 public class Trans {
-    private int card_number, sum, id;
+    private int card_number, sum;
     private String date, type;
-    private boolean permission;
 
     public Trans(String date, String type, int sum){
         setDate(date);
@@ -20,13 +19,6 @@ public class Trans {
         this.sum = sum;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getDate() {
         return date;
@@ -44,20 +36,21 @@ public class Trans {
         this.type = type;
     }
 
-    public boolean isPermission() {
-        return permission;
-    }
-
-    public void setPermission(boolean permission) {
-        this.permission = permission;
-    }
-
     public int getCard_number() {
         return card_number;
     }
 
     public void setCard_number(int card_number) {
         this.card_number = card_number;
+    }
+
+    @Override
+    public String toString() {
+        return "Trans{" +
+                ", sum=" + sum +
+                ", date='" + date + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
 

@@ -10,14 +10,13 @@ public class TransController {
     public TransController(ITransRepo repo) {
         this.repo = repo;
     }
-    public String getAllTransInfo() {
-        List<Trans> transList = repo.getAllTransInfo();
+    public String getAllTransInfo(int card_number) {
+        List<Trans> transList = repo.getAllTransInfo(card_number);
         return transList.toString();
     }
-    public String createTransaction(int sum, String date, String type, int card_id, String cvv, int balance, int trans_id) {
+    public String createTransaction(int sum, String date, String type, int card_number) {
         Trans trans = new Trans(date, type, sum);
-        boolean created = repo.createTransaction(trans);
-        boolean balancePermission = repo.transPermissionBalance(trans_id, balance);
-        return ((created || balancePermission) ? "Transaction is successfully finished!" : "Transaction is failed!");
+        boolean created = repo.createTransaction(trans, card_number);
+        return (created ? "Transaction is successfully finished!" : "Transaction is failed!");
     }
 }

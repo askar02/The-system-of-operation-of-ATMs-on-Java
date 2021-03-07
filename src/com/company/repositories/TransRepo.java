@@ -15,35 +15,13 @@ public class TransRepo implements ITransRepo {
     }
 
     @Override
-    public boolean transPermissionBalance(int id, int balance) {
+    public List<Trans> getAllTransInfo(int card_number) {
         try {
             Connection con = db.getConnection();
-            String sql = "select trans.sum, cards.balance from trans inner join cards on cards.card_number = trans.card_number where trans.id = ?";
+            String sql = "select date, type, sum from trans where card_number = ?";
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, id);
+            st.setInt(1, card_number);
             ResultSet rs = st.executeQuery();
-            if(rs.next()) {
-                int sum1 = rs.getInt("trans.sum");
-                String balance1 = rs.getString("balance");
-                int balance2 = Integer.parseInt(balance1);
-                if (sum1<=balance2) {
-                    return true;
-                }
-            }
-        }
-        catch (SQLException | ClassNotFoundException throwable) {
-            throwable.printStackTrace();
-        }
-        return false;
-    }
-
-    @Override
-    public List<Trans> getAllTransInfo() {
-        try {
-            Connection con = db.getConnection();
-            String sql = "select date, type, sum from trans";
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
             List<Trans> transList = new ArrayList<>();
             while (rs.next()) {
                 Trans trans = new Trans(rs.getString("date"),
@@ -61,14 +39,15 @@ public class TransRepo implements ITransRepo {
     }
 
     @Override
-    public boolean createTransaction(Trans trans) {
+    public boolean createTransaction(Trans trans, int card_number) {
         try {
             Connection con = db.getConnection();
-            String sql = "insert into trans(date, type, sum) values(?, ?, ?)";
+            String sql = "insert into trans(date, type, sum, card_number) values(?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, trans.getDate());
             st.setString(2, trans.getType());
             st.setInt(3, trans.getSum());
+            st.setInt(4, card_number);
             boolean executed = st.execute();
             con.close();
             return  executed;

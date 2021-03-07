@@ -16,7 +16,7 @@ public class CardRepository implements ICardRepo {
     }
 
     @Override
-    public boolean createNewCard(Cards cards) {
+    public boolean createNewCard(Cards cards, int login) {
         try {
             Connection con = db.getConnection();
             String sql = "INSERT INTO cards(card_number,password,balance,cvv,login) VALUES (?,?,?,?,?)";
@@ -25,8 +25,8 @@ public class CardRepository implements ICardRepo {
             st.setInt(1, cards.getCard_number());
             st.setString(2, cards.getPassword());
             st.setString(3, cards.getBalance());
-            st.setInt(4, cards.getCvv());
-            st.setInt(5, cards.getUsers_login());
+            st.setString(4, cards.getCvv());
+            st.setInt(5, login);
             boolean executed = st.execute();
             con.close();
             return executed;
@@ -36,19 +36,18 @@ public class CardRepository implements ICardRepo {
         return false;
     }
     @Override
-    public List<Cards> viewAllCards() {
+    public List<Cards> viewAllCards(int login) {
         try {
             Connection con = db.getConnection();
-            String sql = "SELECT card_number,password,balance,cvv,login FROM cards";
-            Statement st = con.createStatement();
-
-            ResultSet rs = st.executeQuery(sql);
+            String sql = "SELECT card_number,balance,cvv,login FROM cards where login = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, login);
+            ResultSet rs = st.executeQuery();
             List<Cards> cards = new ArrayList<>();
             while (rs.next()) {
-                Cards card = new Cards(rs.getString("card_number"),
-                        rs.getString("password"),
-                        rs.getInt("balance"),
-                        rs.getInt("cvv"),
+                Cards card = new Cards(rs.getInt("card_number"),
+                        rs.getString("balance"),
+                        rs.getString("cvv"),
                         rs.getInt("login"));
 
                 cards.add(card);
@@ -62,10 +61,10 @@ public class CardRepository implements ICardRepo {
     }
 
     @Override
-    public Cards getCard(int cardNumber) {
+    public Cards getCard(int cardNumber, int login) {
         try {
             Connection con = db.getConnection();
-            String sql = "select (card_number, password, balance, cvv) from cards where card_number = ?";
+            String sql = "select * from cards where card_number = ?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, cardNumber);
             ResultSet rs = st.executeQuery();
@@ -73,15 +72,14 @@ public class CardRepository implements ICardRepo {
                 Cards cards = new Cards(rs.getInt("card_number"),
                         rs.getString("password"),
                         rs.getString("balance"),
-                        rs.getInt("cvv"));
+                        rs.getString("cvv"),
+                        rs.getInt("login"));
                 con.close();
                 return cards;
             }
-        }
-        catch (SQLException | ClassNotFoundException throwable) {
+        } catch (SQLException | ClassNotFoundException throwable) {
             throwable.printStackTrace();
         }
-
         return null;
     }
 }
