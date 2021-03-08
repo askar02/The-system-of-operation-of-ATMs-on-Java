@@ -19,7 +19,7 @@ public class CardsController {
     public String createNewCard(int card_number, String password, String  balance, String cvv, int login ) {
         Cards cards = new Cards(card_number, password, balance, cvv, login);
         boolean created = repo.createNewCard(cards, login);
-        return (created ? "Your card is created" : "Creation is failed try again");
+        return (created ? "Creation is failed try again" : "Your card is created");
     }
     public boolean getCard(int card_number, int login) {
         Cards cards = repo.getCard(card_number, login);

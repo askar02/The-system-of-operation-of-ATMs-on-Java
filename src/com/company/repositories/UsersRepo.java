@@ -43,11 +43,15 @@ public class UsersRepo implements IUsersRepo {
             String sql = "SELECT login FROM users";
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
+            List<Integer> logins = new ArrayList<>();
+            while(rs.next()) {
                 int login1 = rs.getInt("login");
-                if (login1 == login){
-                    con.close();
-                    return true;
+                logins.add(login);
+                con.close();
+                for (int login2:logins) {
+                    if (login2 == login) {
+                        return true;
+                    }
                 }
             }
         } catch (SQLException | ClassNotFoundException throwables) {

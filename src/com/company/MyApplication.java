@@ -171,6 +171,7 @@ public class MyApplication {
         System.out.print("Set the sum of transaction: ");
         int sum = scanner.nextInt();
         String response = transController.createTransaction(sum, date, type, card_number);
+        System.out.println(response);
     }
     public void newLoanMenu(int card_number) {
         System.out.print("Set the sum of your loan: ");
