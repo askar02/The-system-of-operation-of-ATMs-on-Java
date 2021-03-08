@@ -68,6 +68,7 @@ public class Cards {
     @Override
     public String toString() {
         return "Cards{" +
+                "card_number=" + card_number +
                 ", balance='" + balance + '\'' +
                 ", cvv='" + cvv + '\'' +
                 ", users_login=" + users_login +
