@@ -49,7 +49,7 @@ public class UsersRepo implements IUsersRepo {
                 logins.add(login1);
                 con.close();
                 for (int login2:logins) {
-                    if (login2 == login) {
+                    if (login2 == login1) {
                         return true;
                     }
                 }

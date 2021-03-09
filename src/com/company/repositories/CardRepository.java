@@ -82,4 +82,29 @@ public class CardRepository implements ICardRepo {
         }
         return null;
     }
+    @Override
+    public boolean checkPassword(String password, int cardNumber) {
+        try {
+            Connection con = db.getConnection();
+            String sql = "select password from cards where card_number = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setInt(1, cardNumber);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                String password1 = rs.getString("password");
+                con.close();
+                if (password1 == password) {
+                    con.close();
+                    return true;
+                }
+                else {
+                    con.close();
+                    return false;
+                }
+            }
+        } catch (SQLException | ClassNotFoundException throwable) {
+            throwable.printStackTrace();
+        }
+        return false;
+    }
 }

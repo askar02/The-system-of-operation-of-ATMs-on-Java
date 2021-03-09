@@ -122,7 +122,9 @@ public class MyApplication {
     public void getCardMenu(int userLogin) {
         System.out.print("Enter card number: ");
         int cardNumber = scanner.nextInt();
-        boolean response = cardsController.getCard(cardNumber, userLogin);
+        System.out.print("Enter password: ");
+        String password = scanner.next();
+        boolean response = cardsController.getCard(cardNumber, userLogin, password);
         if (response) {
             transApplication(cardNumber);
         }
