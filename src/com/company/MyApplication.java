@@ -60,7 +60,7 @@ public class MyApplication {
         String lname = scanner.next();
         System.out.print("Enter your birth date: ");
         String birth_date = scanner.next();
-        System.out.print("Enter your IIN as login: ");
+        System.out.print("Enter your login: ");
         int userLogin = scanner.nextInt();
         System.out.println(userController.registration(userLogin, fname, lname, birth_date));
     }
