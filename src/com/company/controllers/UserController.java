@@ -11,7 +11,7 @@ public class UserController {
     public String registration(int login, String fname, String lname, String birth_date) {
         Users users = new Users(login, fname, lname, birth_date);
         boolean executed = repo.registration(users);
-        return (executed ? "Registration is successful." : "Registration is failed. Please try again");
+        return (executed ? "Registration is failed. Please try again" : "Registration is successful.");
     }
 
     public boolean logIn(int login) {

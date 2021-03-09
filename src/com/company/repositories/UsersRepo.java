@@ -46,7 +46,7 @@ public class UsersRepo implements IUsersRepo {
             List<Integer> logins = new ArrayList<>();
             while(rs.next()) {
                 int login1 = rs.getInt("login");
-                logins.add(login);
+                logins.add(login1);
                 con.close();
                 for (int login2:logins) {
                     if (login2 == login) {
