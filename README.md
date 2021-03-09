@@ -16,6 +16,6 @@ Brief instructions for using the system:
 4. In this console, you can: 1)View all your cards, 2)add a new card, 3)pick card by its id.
 5. When you select view all cards, all your cards will be shown to you.
 6. To add a new card, you will need to fill in all the data on your card.
-7. To pick your card by id, you need to write number of your card 
+7. To pick your card by id, you need to write number of your card. 
 8. After picking the card, if all the card details were correct, you go to the transaction management console.
 9. In this console, you can: 1)view history of transaction, 2)make new transaction, 3)view debts, 4)take new loan. 
