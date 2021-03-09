@@ -12,8 +12,8 @@ public class DebtsController {
     }
     public String takeLoan(int loan_sum, int loan_plan, int card_number) {
         boolean executed = repo.takeLoan(loan_plan, loan_sum, card_number);
-        return (executed ? "Loan is successfully taken. You took " + loan_sum + " for " + loan_plan + " years and will pay " + loan_sum/loan_plan + " per month."
-                : "Loan registration was denied");
+        return (executed ? "Loan registration was denied"
+                : "Loan is successfully taken. You took " + loan_sum + " for " + loan_plan + " years and will pay " + loan_sum/loan_plan + " per month.");
     }
 
     public String getAllLoans(int card_number) {
