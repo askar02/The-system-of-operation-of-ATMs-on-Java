@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.controllers.CardsController;
+import com.company.controllers.CardsController; //importing of packages
 import com.company.controllers.DebtsController;
 import com.company.controllers.TransController;
 import com.company.controllers.UserController;
@@ -9,7 +9,7 @@ import com.company.repositories.interfaces.IDebtsRepo;
 import com.company.repositories.interfaces.ITransRepo;
 import com.company.repositories.interfaces.IUsersRepo;
 
-import java.util.Scanner;
+import java.util.Scanner; // scanner utility
 
 public class MyApplication {
     private final DebtsController debtsController;
