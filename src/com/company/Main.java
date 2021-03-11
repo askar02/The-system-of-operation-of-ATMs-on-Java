@@ -22,5 +22,6 @@ public class Main {
         IDebtsRepo debtsRepo = new DebtsRepo(db);
         MyApplication app = new MyApplication(debtsRepo,transRepo,cardsRepo,usersRepo);
         app.start();
+
     }
 }
