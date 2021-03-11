@@ -17,21 +17,21 @@ public class DebtsRepo implements IDebtsRepo {
     @Override
     public List<Debts> getAllLoans(int card_number) {
         try {
-            Connection con = db.getConnection();
-            String sql = "select* from debts where card_number = ?";
+            Connection con = db.getConnection(); //establish connection
+            String sql = "select* from debts where card_number = ?"; //sql statement to access all fields of table
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, card_number);
+            st.setInt(1, card_number); //set given number
             ResultSet rs = st.executeQuery();
-            List<Debts> debtsList = new ArrayList<>();
+            List<Debts> debtsList = new ArrayList<>(); //list to keep all fields of table
             while (rs.next()) {
                 Debts debt = new Debts(rs.getInt("loan_sum"),
                         rs.getInt("loan_plan"));
                 debtsList.add(debt);
-                con.close();
+                con.close(); //close connection
             }
-            return debtsList;
+            return debtsList; //return list
         }
-        catch (SQLException | ClassNotFoundException throwable) {
+        catch (SQLException | ClassNotFoundException throwable) { //catch exceptions
             throwable.printStackTrace();
         }
         return null;
@@ -40,17 +40,17 @@ public class DebtsRepo implements IDebtsRepo {
     @Override
     public boolean takeLoan(int loan_plan, int loan_sum, int card_number) {
         try {
-            Connection con = db.getConnection();
-            String sql = "insert into debts(loan_plan, loan_sum, card_number) values (?, ?, ?)";
+            Connection con = db.getConnection();//establish connection with DB
+            String sql = "insert into debts(loan_plan, loan_sum, card_number) values (?, ?, ?)";//sql statement to access fields of table
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, loan_plan);
+            st.setInt(1, loan_plan); //set given numbers
             st.setInt(2, loan_sum);
             st.setInt(3, card_number);
-            boolean taken = st.execute();
-            con.close();
-            return taken;
+            boolean taken = st.execute();//boolean to check if statement executed or not
+            con.close();//close connection
+            return taken; //return boolean
         }
-        catch (SQLException | ClassNotFoundException throwable) {
+        catch (SQLException | ClassNotFoundException throwable) {//catch exception
             throwable.printStackTrace();
         }
         return false;
