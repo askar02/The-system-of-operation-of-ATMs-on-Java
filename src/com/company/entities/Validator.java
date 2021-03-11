@@ -11,12 +11,13 @@ public class Validator {
     private int month;
     private int year;
 
-    public static void checkPassword(String password) { // function which cheks the password if it is not matching with conditions outputs come message
-        Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]3)[A-Za-z\\d@$!%*?&]{8,}$");
-        Matcher matcher = pattern.matcher(password);
-        boolean matchFound = matcher.find();
-        if (!matchFound) {
-            System.out.println("Your password does not match with requirements!\n Please be sure that your password\ncontains at least 1 uppercase letter, 1 lowercase letter, 1 digit, 1 special symbol(@,$,!,^) and length more or equal to 8.");
+    public boolean checkPassword(String password) { // function which cheks the password if it is not matching with conditions outputs come message
+        String regexp = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[@$!%?&])[A-Za-z\\d@$!%?&]{8,}$";
+        if (password.matches(regexp)) {
+            return true;
+
+        } else {
+            return false;
         }
     }
 
