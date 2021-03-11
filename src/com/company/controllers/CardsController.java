@@ -21,22 +21,15 @@ public class CardsController {
         boolean created = repo.createNewCard(cards, login);
         return (created ? "Creation is failed try again" : "Your card is created");
     }
-    public boolean getCard(int card_number, int login, String password) {
-        boolean access = repo.checkPassword(password, card_number);
+    public boolean getCard(int card_number, int login) {
         Cards cards = repo.getCard(card_number, login);
         if (cards == null) {
             System.out.println("No card with given id is found.");
             return false;
         }
         else {
-            if (access) {
-                System.out.println(cards.toString());
-                return true;
-            }
-            else {
-                System.out.println("Wrong password");
-                return false;
-            }
+            System.out.println(cards.toString());
+            return true;
         }
     }
 }

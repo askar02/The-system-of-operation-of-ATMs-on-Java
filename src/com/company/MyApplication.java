@@ -60,7 +60,7 @@ public class MyApplication {
         String lname = scanner.next();
         System.out.print("Enter your birth date: ");
         String birth_date = scanner.next();
-        System.out.print("Enter your IIN as login: ");
+        System.out.print("Enter your login: ");
         int userLogin = scanner.nextInt();
         System.out.println(userController.registration(userLogin, fname, lname, birth_date));
     }
@@ -122,9 +122,7 @@ public class MyApplication {
     public void getCardMenu(int userLogin) {
         System.out.print("Enter card number: ");
         int cardNumber = scanner.nextInt();
-        System.out.print("Enter password: ");
-        String password = scanner.next();
-        boolean response = cardsController.getCard(cardNumber, userLogin, password);
+        boolean response = cardsController.getCard(cardNumber, userLogin);
         if (response) {
             transApplication(cardNumber);
         }
