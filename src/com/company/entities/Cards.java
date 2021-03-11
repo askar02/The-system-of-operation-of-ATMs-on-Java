@@ -1,6 +1,6 @@
 package com.company.entities;
 
-public class Cards {
+public class Cards { //instances of cards
     private int card_number;
     private String password;
     private String balance;

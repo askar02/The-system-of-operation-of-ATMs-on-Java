@@ -4,7 +4,7 @@ public class Debts {
     private int card_number;
     private int loan_plan, loan_sum;
 
-    public Debts(int loan_sum, int loan_plan) {
+    public Debts(int loan_sum, int loan_plan) { //instances of Debts
         setLoan_plan(loan_plan);
         setLoan_sum(loan_sum);
     }

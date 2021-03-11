@@ -12,9 +12,9 @@ public class CardsController {
         this.repo = repo;
     }
 
-    public String viewAllCards(int login) {
+    public String viewAllCards(int login) {//method to get all cards by login of users
         List<Cards> cardsList = repo.viewAllCards(login);
-        return (cardsList == null ? "No cards found" : cardsList.toString());
+        return (cardsList == null ? "No cards found" : cardsList.toString());//return string of
     }
     public String createNewCard(int card_number, String password, String  balance, String cvv, int login ) {
         Cards cards = new Cards(card_number, password, balance, cvv, login);

@@ -1,6 +1,6 @@
 package com.company.entities;
 
-public class Trans {
+public class Trans { //instances of Trans objects
     private int card_number, sum;
     private String date, type;
 

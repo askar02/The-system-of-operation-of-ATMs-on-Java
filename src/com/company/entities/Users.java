@@ -1,6 +1,6 @@
 package com.company.entities;
 
-public class Users {
+public class Users { //instances of Users objects
     private int login;
     private String fname;
     private String lname;
