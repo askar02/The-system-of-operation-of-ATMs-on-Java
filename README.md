@@ -1,4 +1,4 @@
-# finalProject
+# The system of operation of ATMs on Java
 Initially when we started our work on the project we completed first steps which are works on the logic of the program. So we created tables in database and connection among them
 Also, we looked on the logic of whole program and functionality based on the requirements provided by teacher.
 Next step is work on entitites.
